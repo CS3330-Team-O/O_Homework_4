@@ -1,13 +1,14 @@
 package edu.mu;
 
 public class VehicleManager {
+	String vehicleFilePath = "vehicleList.csv";
 	
 	//Ash
 	public void VehicleManager(String fileName) {
 		
 	}
 	
-	//Syd
+	//Ash
 	public boolean readFromFile(String fileName) {
 		return true;
 	}
@@ -58,12 +59,12 @@ public class VehicleManager {
 	}
 	
 	//Isaiah
-	private boolean isVehicleType(Vehicle v, Class class) {
+	private boolean isVehicleType(Vehicle v, Class clazz) {
 		return true;
 	}
 	
 	//Isaiah
-	public int getNumberOfVehichlesByType(Class class) {
+	public int getNumberOfVehichlesByType(Class clazz) {
 		
 	}
 	
