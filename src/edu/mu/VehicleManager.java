@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class VehicleManager {
 	String vehicleFilePath = "vehicleList.csv";
-	ArrayList <Vehicle> vehicleList;
+	ArrayList <Vehicle> vehicleList = new ArrayList<>();
 
 	//Ash
 	public boolean readFromFile(String fileName) {
@@ -29,7 +29,20 @@ public class VehicleManager {
 			int cylinders = Integer.parseInt(v[9]);
 			double gasTank = Double.parseDouble(v[10]);
 			StartMechanism startType = Vehicle.convertStringToStartMechanism(v[11]);
-			//Vehicle vehicle = new Vehicle(type, model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
+			switch (type) {
+				case "Car":
+					Vehicle car = new Car(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					vehicleList.add(car);
+				case "Truck":
+					Vehicle truck = new Truck(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					vehicleList.add(truck);
+				case "SUV":
+					Vehicle suv = new SUVmodel, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType();
+					vehicleList.add(suv);
+				case "MotorBike":
+					Vehicle motorBike = new MotorBike(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					vehicleList.add(motorBike);
+			}
 			}  
 			return true;
 		} catch (IOException e) {
