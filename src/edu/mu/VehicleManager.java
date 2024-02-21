@@ -129,6 +129,7 @@ public class VehicleManager {
 			bwr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		} 
 		return true;
 	}
