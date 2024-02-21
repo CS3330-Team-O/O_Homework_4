@@ -54,7 +54,7 @@ public class VehicleManager {
 	
 	//Ash
 	public void VehicleManager(String fileName) {
-			
+			readFromFile(fileName);
 	}
 	
 	//Syd
