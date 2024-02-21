@@ -1,7 +1,9 @@
 package edu.mu;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -31,16 +33,16 @@ public class VehicleManager {
 			StartMechanism startType = Vehicle.convertStringToStartMechanism(v[11]);
 			switch (type) {
 				case "Car":
-					Vehicle car = new Car(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					Vehicle car = new Car(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					vehicleList.add(car);
 				case "Truck":
-					Vehicle truck = new Truck(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					Vehicle truck = new Truck(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					vehicleList.add(truck);
 				case "SUV":
-					Vehicle suv = new SUVmodel, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType();
+					Vehicle suv = new SUV(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					vehicleList.add(suv);
 				case "MotorBike":
-					Vehicle motorBike = new MotorBike(model, make, color, modelYear, price, fuelType, mileage, mass, cylinders, gasTank, startType);
+					Vehicle motorBike = new MotorBike(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					vehicleList.add(motorBike);
 			}
 			}  
@@ -113,6 +115,19 @@ public class VehicleManager {
 	
 	//Ash
 	public boolean saveVehicleList() {
+		FileWriter fw;
+		try {
+			fw = new FileWriter(vehicleFilePath, false);
+			BufferedWriter bwr = new BufferedWriter(fw);
+			for (int i = 0; i < this.vehicleList.size(); i++) {
+				bwr.write(this.vehicleList.get(i).getType() + "," + this.vehicleList.get(i).getTitle() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getYear() + "," + this.vehicleList.get(i).getGenre() + "\n");
+			}
+			bwr.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+		
 		return true;
 	}
 	

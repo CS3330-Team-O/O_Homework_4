@@ -3,8 +3,8 @@ package edu.mu;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		VehicleManager vehicleManager = new VehicleManager();
+		boolean readFile = VehicleManager.readFromFile("vehicleList.csv");
 	}
 
 }
