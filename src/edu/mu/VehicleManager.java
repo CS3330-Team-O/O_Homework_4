@@ -1,16 +1,47 @@
 package edu.mu;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class VehicleManager {
 	String vehicleFilePath = "vehicleList.csv";
-	
+	ArrayList <Vehicle> vehicleList;
+
 	//Ash
-	public void VehicleManager(String fileName) {
-		
+	public boolean readFromFile(String fileName) {
+		String line = "";  
+		String split = ",";  
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));  
+			while ((line = br.readLine()) != null) {  
+			String[] v = line.split(split); 
+			String type = v[0];
+			String model = v[1];
+			String make = v[2];
+			long modelYear = Long.parseLong(v[3]);
+			double price = Double.parseDouble(v[4]);
+			VehicleColor color = Vehicle.convertStringToVehicleColor(v[5]);
+			FuelType fuelType = Vehicle.convertStringToFuelType(v[6]);
+			double mileage = Double.parseDouble(v[7]);
+			double mass = Double.parseDouble(v[8]);
+			int cylinders = Integer.parseInt(v[9]);
+			double gasTank = Double.parseDouble(v[10]);
+			StartMechanism startType = Vehicle.convertStringToStartMechanism(v[11]);
+			Vehicle vehicle = new Vehicle(type, model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
+			}  
+			return true;
+		} catch (IOException e) {
+			System.out.println("File Not Found");
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	//Ash
-	public boolean readFromFile(String fileName) {
-		return true;
+	public void VehicleManager(String fileName) {
+			
 	}
 	
 	//Syd
