@@ -121,6 +121,7 @@ public abstract class Vehicle {
 				return VehicleColor.BLUE;
 			default:
 				return VehicleColor.BROWN;
+			}
 		}
   
 	@Override

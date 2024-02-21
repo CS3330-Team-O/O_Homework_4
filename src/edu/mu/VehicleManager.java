@@ -29,7 +29,7 @@ public class VehicleManager {
 			int cylinders = Integer.parseInt(v[9]);
 			double gasTank = Double.parseDouble(v[10]);
 			StartMechanism startType = Vehicle.convertStringToStartMechanism(v[11]);
-			Vehicle vehicle = new Vehicle(type, model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
+			//Vehicle vehicle = new Vehicle(type, model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 			}  
 			return true;
 		} catch (IOException e) {
