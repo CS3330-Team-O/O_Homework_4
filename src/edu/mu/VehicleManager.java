@@ -120,7 +120,11 @@ public class VehicleManager {
 			fw = new FileWriter(vehicleFilePath, false);
 			BufferedWriter bwr = new BufferedWriter(fw);
 			for (int i = 0; i < this.vehicleList.size(); i++) {
-				bwr.write(this.vehicleList.get(i).getType() + "," + this.vehicleList.get(i).getTitle() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getYear() + "," + this.vehicleList.get(i).getGenre() + "\n");
+				bwr.write(this.vehicleList.get(i).getClass() + "," + this.vehicleList.get(i).getBrand() + "," + this.vehicleList.get(i).getMake() + "," + 
+						this.vehicleList.get(i).getModelYear() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getColor() + "," + 
+						this.vehicleList.get(i).getFuelType() + "," + this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getMass() + "," + 
+						this.vehicleList.get(i).getCylinders() + "," + this.vehicleList.get(i).getGasTankCapacity() + "," + 
+						this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getStartType() + "\n");
 			}
 			bwr.close();
 		} catch (IOException e) {
