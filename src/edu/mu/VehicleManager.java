@@ -89,12 +89,26 @@ public class VehicleManager {
 	
 	//Ash
 	public boolean removeVehicle(Vehicle vehicle) {
-		return true;
+		try {
+			for(int i = 0; i < vehicleList.size(); ++i) {
+				if(this.vehicleList.get(i).equals(vehicle)) {
+					vehicleList.remove(i);
+				}
+			}
+			return true;
+		}catch(Exception e) {
+			return false;
+		}	
 	}
 	
 	//Ash
 	public boolean addVehicle(Vehicle vehicle) {
-		return true;
+		try {
+			this.vehicleList.add(vehicle);
+			return true;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 	
 	//Ash
