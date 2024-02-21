@@ -90,13 +90,21 @@ public class VehicleManager {
 	}
 	
 	//Isaiah
-	private boolean isVehicleType(Vehicle v, Class clazz) {
-		return true;
-	}
-	
-	//Isaiah
-	public int getNumberOfVehichlesByType(Class clazz) {
+		private <T> boolean isVehicleType(Vehicle v, Class<T> clazz) {
+			
+			return (v.getClass() == clazz);
+		}
 		
+	//Isaiah
+	public int getNumberOfVehichlesByType(@SuppressWarnings("rawtypes") Class clazz) {
+			
+		int count = 0;
+		for(int i = 0; i < vehicleList.size(); ++i) {
+			if(vehicleList.get(i).getClass() == clazz) {
+					count++;
+			}
+		}
+		return count;
 	}
 	
 	//David
