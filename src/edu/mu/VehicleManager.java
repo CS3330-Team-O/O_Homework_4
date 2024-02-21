@@ -130,8 +130,6 @@ public class VehicleManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		
-		
 		return true;
 	}
 	
@@ -143,10 +141,9 @@ public class VehicleManager {
 		
 	//Isaiah
 	public int getNumberOfVehichlesByType(@SuppressWarnings("rawtypes") Class clazz) {
-			
 		int count = 0;
 		for(int i = 0; i < vehicleList.size(); ++i) {
-			if(vehicleList.get(i).getClass() == clazz) {
+			if(isVehicleType(vehicleList.get(i), clazz.getClass())) {
 					count++;
 			}
 		}
