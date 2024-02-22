@@ -78,27 +78,68 @@ public class VehicleManager {
 	
 	//Syd
 	public void displayAllTruckInformation() {
-		
+		boolean trucks = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof Truck) {
+				trucks=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!trucks) {
+			System.out.println("There are no trucks in this list!");
+		}
 	}
 	
 	//Syd
 	public void displayAllSUVInformation() {
-		
+		boolean suv = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof SUV) {
+				suv=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!suv) {
+			System.out.println("There are no SUVs in this list!");
+		}
 	}
 	
 	//Syd
 	public void displayAllMotorBikeInformation() {
-		
+		boolean motorbike = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof MotorBike) {
+				motorbike=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!motorbike) {
+			System.out.println("There are no motor bikes in this list!");
+		}
 	}
 	
 	//Syd
 	public void displayVehicleInformation(Vehicle v) {
-		
+		boolean vehicle = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(v.equals(vehicleList.get(i))) {
+				vehicle=true;
+				System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!vehicle) {
+			System.out.println("Vehicle was not found in this list!");
+		}
 	}
 	
 	//Syd
 	public void displayAllVehicleInformation() {
-		
+		if(vehicleList.isEmpty()){
+			System.out.println("There are no vehicles in this list!");
+		}
+		for(int i =0; i<= vehicleList.size(); i++){
+			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+		}
 	}
 	
 	//Ash

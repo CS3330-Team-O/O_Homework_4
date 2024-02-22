@@ -10,6 +10,8 @@ public class Main {
 		boolean add = vehicleManager.addVehicle(carTest);
 		boolean remove = vehicleManager.removeVehicle(carTest);
 		boolean save = vehicleManager.saveVehicleList();
+		
+		vehicleManager.displayAllCarInformation();
 	}
 
 }
