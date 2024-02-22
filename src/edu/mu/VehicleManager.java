@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class VehicleManager {
 	String vehicleFilePath = "vehicleList.csv";
 	ArrayList <Vehicle> vehicleList = new ArrayList<>();
+	private final static double distance = 300;
+	private final static double fuelPrice = 3.25;
 
 	//Ash
 	public boolean readFromFile(String fileName) {
@@ -61,7 +63,17 @@ public class VehicleManager {
 	
 	//Syd
 	public void displayAllCarInformation() {
-		
+		boolean cars = false;
+			for(int i =0; i<= vehicleList.size(); i++){
+				if(vehicleList.get(i) instanceof Car) {
+					cars=true;
+					System.out.println(vehicleList.get(i).toString());
+					System.out.println("Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				}
+			}
+		if(!cars) {
+			System.out.println("There are no cars in this list!");
+		}
 	}
 	
 	//Syd
