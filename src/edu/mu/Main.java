@@ -1,5 +1,7 @@
 package edu.mu;
 
+import java.util.ArrayList;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -7,7 +9,7 @@ public class Main {
 		boolean readFile = vehicleManager.readFromFile("vehicleList.csv");
 		System.out.println("-------------Original Car Info-------------\n");
 		vehicleManager.displayAllCarInformation();
-		
+    
 		Car carTest = new Car("Test", "Test", 2024, 100000, VehicleColor.BLUE, FuelType.DIESEL, 50000, 3.0, 4, 20, StartMechanism.KEYSTART);
 		boolean add = vehicleManager.addVehicle(carTest);
 
@@ -15,6 +17,7 @@ public class Main {
 		vehicleManager.displayAllCarInformation();
 		
 		boolean remove = vehicleManager.removeVehicle(carTest);
+
 		System.out.println("-------------Car Info without Test-------------\n");
 		vehicleManager.displayAllCarInformation();
 		
@@ -41,11 +44,12 @@ public class Main {
 		vehicleManager.displayAllMotorBikeInformation();
 		vehicleManager.displayAllVehicleInformation();
 		
-		vehicleManager.getVehicleWithHighestMaintenanceCost(0);
-		vehicleManager.getVehicleWithLowestMaintenanceCost(0);
-		vehicleManager.getVehicleWithHighestFuelEfficiency(0, 0);
-		vehicleManager.getVehicleWithLowestFuelEfficiency(0, 0);
-		vehicleManager.getAverageFuelEfficiencyOfSUVs(0, 0);
+		vehicleManager.getVehicleWithHighestMaintenanceCost(100);
+		vehicleManager.getVehicleWithLowestMaintenanceCost(100);
+		vehicleManager.getVehicleWithHighestFuelEfficiency(100, 3);
+		vehicleManager.getVehicleWithLowestFuelEfficiency(100, 3);
+		vehicleManager.getAverageFuelEfficiencyOfSUVs(100, 3);
+
 	}
 
 }

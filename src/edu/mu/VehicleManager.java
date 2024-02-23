@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class VehicleManager {
-	String vehicleFilePath = "vehicleList.csv";
-	ArrayList <Vehicle> vehicleList = new ArrayList<>();
+	String vehicleFilePath = "./vehicleList.csv";
+	public ArrayList <Vehicle> vehicleList = new ArrayList<>();
 	private final static double distance = 300;
 	private final static double fuelPrice = 3.25;
 
@@ -20,8 +20,9 @@ public class VehicleManager {
 		String line = "";
 		String split = ",";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));
-			while ((line = br.readLine()) != null) {
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			br.readLine();
+			while ((line = br.readLine()) != null) { 
 			String[] v = line.split(split);
 			String type = v[0];
 			String model = v[1];
@@ -38,18 +39,19 @@ public class VehicleManager {
 			switch (type) {
 				case "Car":
 					Vehicle car = new Car(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
-					vehicleList.add(car);
+					this.vehicleList.add(car);
 				case "Truck":
 					Vehicle truck = new Truck(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
-					vehicleList.add(truck);
+					this.vehicleList.add(truck);
 				case "SUV":
 					Vehicle suv = new SUV(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
-					vehicleList.add(suv);
+					this.vehicleList.add(suv);
 				case "MotorBike":
 					Vehicle motorBike = new MotorBike(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
-					vehicleList.add(motorBike);
+					this.vehicleList.add(motorBike);
 			}
 			}
+			br.close();
 			return true;
 		} catch (IOException e) {
 			System.out.println("File Not Found");
@@ -59,18 +61,22 @@ public class VehicleManager {
 	}
 
 	//Ash
-	public void VehicleManager(String fileName) {
-			readFromFile(fileName);
+	public VehicleManager(String fileName) {
+		readFromFile(fileName);
+	}
+	
+	public VehicleManager() {
+		
 	}
 
 	//Syd
 	public void displayAllCarInformation() {
 		boolean cars = false;
-			for(int i =0; i<= vehicleList.size(); i++){
+		for(int i = 0; i < vehicleList.size(); i++){
 				if(vehicleList.get(i) instanceof Car) {
 					cars=true;
 					System.out.println(vehicleList.get(i).toString());
-					System.out.println("Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+					System.out.println("Maintenance Cost: " + vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
 				}
 			}
 		if(!cars) {
@@ -81,7 +87,7 @@ public class VehicleManager {
 	//Syd
 	public void displayAllTruckInformation() {
 		boolean trucks = false;
-		for(int i =0; i<= vehicleList.size(); i++){
+		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof Truck) {
 				trucks=true;
 				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
@@ -95,7 +101,7 @@ public class VehicleManager {
 	//Syd
 	public void displayAllSUVInformation() {
 		boolean suv = false;
-		for(int i =0; i<= vehicleList.size(); i++){
+		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof SUV) {
 				suv=true;
 				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
@@ -109,7 +115,7 @@ public class VehicleManager {
 	//Syd
 	public void displayAllMotorBikeInformation() {
 		boolean motorbike = false;
-		for(int i =0; i<= vehicleList.size(); i++){
+		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof MotorBike) {
 				motorbike=true;
 				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
@@ -123,7 +129,7 @@ public class VehicleManager {
 	//Syd
 	public void displayVehicleInformation(Vehicle v) {
 		boolean vehicle = false;
-		for(int i =0; i<= vehicleList.size(); i++){
+		for(int i = 0; i < vehicleList.size(); i++){
 			if(v.equals(vehicleList.get(i))) {
 				vehicle=true;
 				System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
@@ -175,7 +181,7 @@ public class VehicleManager {
 			fw = new FileWriter(vehicleFilePath, false);
 			BufferedWriter bwr = new BufferedWriter(fw);
 			for (int i = 0; i < this.vehicleList.size(); i++) {
-				bwr.write(this.vehicleList.get(i).getClass() + "," + this.vehicleList.get(i).getBrand() + "," + this.vehicleList.get(i).getMake() + "," + 
+				bwr.write(this.vehicleList.get(i).getType() + "," + this.vehicleList.get(i).getBrand() + "," + this.vehicleList.get(i).getMake() + "," + 
 						this.vehicleList.get(i).getModelYear() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getColor() + "," + 
 						this.vehicleList.get(i).getFuelType() + "," + this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getMass() + "," + 
 						this.vehicleList.get(i).getCylinders() + "," + this.vehicleList.get(i).getGasTankCapacity() + "," + 
@@ -246,7 +252,7 @@ public class VehicleManager {
 	    		} else if (r == 1) {
 	    			continue;
 	    		}
-	    	} else if (maintenanceCostCurrent > lowestMaintenanceCost) {
+	    	} else if (maintenanceCostCurrent < lowestMaintenanceCost) {
 	    		lowestMaintenanceCost = maintenanceCostCurrent;
 	    		lowestMaintenanceCostVehicle = this.vehicleList.get(i);
 	    	}
@@ -257,31 +263,37 @@ public class VehicleManager {
 	//David
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
 		double highestFuelEfficiency = 0.0;
-		ArrayList<Vehicle> highestMaintenanceCostVehicles = new ArrayList<>();
+		ArrayList<Vehicle> highestFuelEfficientVehicles = new ArrayList<>();
 	    for (int i = 0; i < this.vehicleList.size(); i++) {
 	    	Vehicle currentVehicle = this.vehicleList.get(i);
 	    	double fuelEfficiencyCurrent = currentVehicle.calculateFuelEfficiency(distance, fuelPrice);
-	    	if (fuelEfficiencyCurrent <= highestFuelEfficiency) {
+	    	if (fuelEfficiencyCurrent > highestFuelEfficiency) {
+	    		highestFuelEfficientVehicles.clear();
+	    		highestFuelEfficientVehicles.add(currentVehicle);
 	    		highestFuelEfficiency = fuelEfficiencyCurrent;
-	    		highestMaintenanceCostVehicles.add(currentVehicle);
+	    	} else if (fuelEfficiencyCurrent == highestFuelEfficiency) {
+	    		highestFuelEfficientVehicles.add(currentVehicle);
 	    	}
 	    }
-	    return highestMaintenanceCostVehicles;
+	    return highestFuelEfficientVehicles;
 	}
 
 	//David
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
-		double lowestFuelEfficiency = 0.0;
-		ArrayList<Vehicle> lowestMaintenanceCostVehicles = new ArrayList<>();
+		double lowestFuelEfficiency = this.vehicleList.get(0).calculateFuelEfficiency(distance, fuelPrice);
+		ArrayList<Vehicle> lowestFuelEfficientVehicles = new ArrayList<>();
 	    for (int i = 0; i < this.vehicleList.size(); i++) {
 	    	Vehicle currentVehicle = this.vehicleList.get(i);
 	    	double fuelEfficiencyCurrent = currentVehicle.calculateFuelEfficiency(distance, fuelPrice);
-	    	if (fuelEfficiencyCurrent <= lowestFuelEfficiency) {
+	    	if (fuelEfficiencyCurrent < lowestFuelEfficiency) {
+	    		lowestFuelEfficientVehicles.clear();
+	    		lowestFuelEfficientVehicles.add(currentVehicle);
 	    		lowestFuelEfficiency = fuelEfficiencyCurrent;
-	    		lowestMaintenanceCostVehicles.add(currentVehicle);
+	    	} else if (fuelEfficiencyCurrent == lowestFuelEfficiency) {
+	    		lowestFuelEfficientVehicles.add(currentVehicle);
 	    	}
 	    }
-	    return lowestMaintenanceCostVehicles;
+	    return lowestFuelEfficientVehicles;
 	}
 
 	//David
