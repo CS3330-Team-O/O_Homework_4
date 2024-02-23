@@ -6,6 +6,7 @@ public class Truck extends Vehicle{
 	}
 
 	public Truck(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
+		super.type = "Truck";
 		super.brand = brand;
 		super.make = make;
 		super.color = color;
