@@ -11,8 +11,10 @@ public class Main {
 		System.out.println("\n-------------Original Car Info-------------");
 		vehicleManager.displayAllVehicleInformation();
     
+		System.out.println("\n-------------Individual Car Info of Test-------------");
 		Car carTest = new Car("Test", "Test", 2024, 100000, VehicleColor.BLUE, FuelType.DIESEL, 50000, 3.0, 4, 20, StartMechanism.KEYSTART);
 		boolean add = vehicleManager.addVehicle(carTest);
+		vehicleManager.displayVehicleInformation(carTest);
 
 		System.out.println("\n-------------Car Info with Test-------------");
 		vehicleManager.displayAllVehicleInformation();
