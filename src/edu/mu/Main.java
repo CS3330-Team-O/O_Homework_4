@@ -21,7 +21,18 @@ public class Main {
 		System.out.println("-------------Reading info in after save to CSV-------------\n");
 		vehicleManager.VehicleManager("vehicleList.csv");
 		vehicleManager.displayAllCarInformation();
+
+		vehicleManager.displayAllTruckInformation();
+		vehicleManager.displayAllSUVInformation();
+		vehicleManager.displayAllMotorBikeInformation();
+		vehicleManager.displayAllVehicleInformation();
+		vehicleManager.displayVehicleInformation(carTest);
 		
+		vehicleManager.getVehicleWithHighestMaintenanceCost(0);
+		vehicleManager.getVehicleWithLowestMaintenanceCost(0);
+		vehicleManager.getVehicleWithHighestFuelEfficiency(0, 0);
+		vehicleManager.getVehicleWithLowestFuelEfficiency(0, 0);
+		vehicleManager.getAverageFuelEfficiencyOfSUVs(0, 0);
 	}
 
 }
