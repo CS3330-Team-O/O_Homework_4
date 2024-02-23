@@ -10,16 +10,15 @@ public class Main {
 		
 		Car carTest = new Car("Test", "Test", 2024, 100000, VehicleColor.BLUE, FuelType.DIESEL, 50000, 3.0, 4, 20, StartMechanism.KEYSTART);
 		boolean add = vehicleManager.addVehicle(carTest);
-<<<<<<< HEAD
-		vehicleManager.displayVehicleInformation(carTest);
-		boolean remove = vehicleManager.removeVehicle(carTest);
-		boolean save = vehicleManager.saveVehicleList();
-		
-		
-		
-=======
+
 		System.out.println("-------------Car Info with Test-------------\n");
->>>>>>> 6244d68b804414a9e42b94eb6084cd98e8c2cbb2
+		vehicleManager.displayAllCarInformation();
+		
+		boolean remove = vehicleManager.removeVehicle(carTest);
+		System.out.println("-------------Car Info without Test-------------\n");
+		vehicleManager.displayAllCarInformation();
+		
+    System.out.println("-------------Car Info with Test-------------\n");
 		vehicleManager.displayAllCarInformation();
 		
 		boolean remove = vehicleManager.removeVehicle(carTest);
@@ -30,6 +29,12 @@ public class Main {
 		System.out.println("-------------Reading info in after save to CSV-------------\n");
 		vehicleManager.VehicleManager("vehicleList.csv");
 		vehicleManager.displayAllCarInformation();
+
+		boolean save = vehicleManager.saveVehicleList();
+		System.out.println("-------------Reading info in after save to CSV-------------\n");
+		vehicleManager.VehicleManager("vehicleList.csv");
+		vehicleManager.displayAllCarInformation();
+
 
 		vehicleManager.displayAllTruckInformation();
 		vehicleManager.displayAllSUVInformation();
