@@ -1,11 +1,13 @@
 package edu.mu;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class VehicleManager {
 	String vehicleFilePath = "vehicleList.csv";
@@ -15,12 +17,12 @@ public class VehicleManager {
 
 	//Ash
 	public boolean readFromFile(String fileName) {
-		String line = "";  
-		String split = ",";  
+		String line = "";
+		String split = ",";
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));  
-			while ((line = br.readLine()) != null) {  
-			String[] v = line.split(split); 
+			BufferedReader br = new BufferedReader(new FileReader(vehicleFilePath));
+			while ((line = br.readLine()) != null) {
+			String[] v = line.split(split);
 			String type = v[0];
 			String model = v[1];
 			String make = v[2];
@@ -47,7 +49,7 @@ public class VehicleManager {
 					Vehicle motorBike = new MotorBike(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					vehicleList.add(motorBike);
 			}
-			}  
+			}
 			return true;
 		} catch (IOException e) {
 			System.out.println("File Not Found");
@@ -55,12 +57,12 @@ public class VehicleManager {
 			return false;
 		}
 	}
-	
+
 	//Ash
 	public void VehicleManager(String fileName) {
 			readFromFile(fileName);
 	}
-	
+
 	//Syd
 	public void displayAllCarInformation() {
 		boolean cars = false;
@@ -75,7 +77,7 @@ public class VehicleManager {
 			System.out.println("There are no cars in this list!");
 		}
 	}
-	
+
 	//Syd
 	public void displayAllTruckInformation() {
 		boolean trucks = false;
@@ -89,7 +91,7 @@ public class VehicleManager {
 			System.out.println("There are no trucks in this list!");
 		}
 	}
-	
+
 	//Syd
 	public void displayAllSUVInformation() {
 		boolean suv = false;
@@ -103,7 +105,7 @@ public class VehicleManager {
 			System.out.println("There are no SUVs in this list!");
 		}
 	}
-	
+
 	//Syd
 	public void displayAllMotorBikeInformation() {
 		boolean motorbike = false;
@@ -117,7 +119,7 @@ public class VehicleManager {
 			System.out.println("There are no motor bikes in this list!");
 		}
 	}
-	
+
 	//Syd
 	public void displayVehicleInformation(Vehicle v) {
 		boolean vehicle = false;
@@ -131,7 +133,7 @@ public class VehicleManager {
 			System.out.println("Vehicle was not found in this list!");
 		}
 	}
-	
+
 	//Syd
 	public void displayAllVehicleInformation() {
 		if(vehicleList.isEmpty()){
@@ -141,7 +143,7 @@ public class VehicleManager {
 			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
 		}
 	}
-	
+
 	//Ash
 	public boolean removeVehicle(Vehicle vehicle) {
 		try {
@@ -153,9 +155,9 @@ public class VehicleManager {
 			return true;
 		}catch(Exception e) {
 			return false;
-		}	
+		}
 	}
-	
+
 	//Ash
 	public boolean addVehicle(Vehicle vehicle) {
 		try {
@@ -165,7 +167,7 @@ public class VehicleManager {
 			return false;
 		}
 	}
-	
+
 	//Ash
 	public boolean saveVehicleList() {
 		FileWriter fw;
@@ -186,13 +188,13 @@ public class VehicleManager {
 		} 
 		return true;
 	}
-	
+
 	//Isaiah
 		private <T> boolean isVehicleType(Vehicle v, Class<T> clazz) {
-			
+
 			return (v.getClass() == clazz);
 		}
-		
+
 	//Isaiah
 	public int getNumberOfVehichlesByType(@SuppressWarnings("rawtypes") Class clazz) {
 		int count = 0;
@@ -203,30 +205,97 @@ public class VehicleManager {
 		}
 		return count;
 	}
-	
+
 	//David
 	public Vehicle getVehicleWithHighestMaintenanceCost(double distance) {
-		
+		Random rand = new Random(); 
+		double highestMaintenanceCost = 0.0;
+		Vehicle highestMaintenanceCostVehicle = null;
+	    for (int i = 0; i < this.vehicleList.size(); i++) {
+	    	Vehicle currentVehicle = this.vehicleList.get(i);
+	    	double maintenanceCostCurrent = currentVehicle.calculateMaintenanceCost(distance);
+	    	if (maintenanceCostCurrent == highestMaintenanceCost) {
+	    		int r = rand.nextInt(2);
+	    		if (r == 0) {
+	    			highestMaintenanceCost = maintenanceCostCurrent;
+		    		highestMaintenanceCostVehicle = this.vehicleList.get(i);
+	    		} else if (r == 1) {
+	    			continue;
+	    		}
+	    	} else if (maintenanceCostCurrent > highestMaintenanceCost) {
+	    		highestMaintenanceCost = maintenanceCostCurrent;
+	    		highestMaintenanceCostVehicle = this.vehicleList.get(i);
+	    	}
+	    }
+	    return highestMaintenanceCostVehicle;
 	}
-	
+
 	//David
 	public Vehicle getVehicleWithLowestMaintenanceCost(double distance) {
-		
+		Random rand = new Random(); 
+		double lowestMaintenanceCost = 0.0;
+		Vehicle lowestMaintenanceCostVehicle = null;
+	    for (int i = 0; i < this.vehicleList.size(); i++) {
+	    	Vehicle currentVehicle = this.vehicleList.get(i);
+	    	double maintenanceCostCurrent = currentVehicle.calculateMaintenanceCost(distance);
+	    	if (maintenanceCostCurrent == lowestMaintenanceCost) {
+	    		int r = rand.nextInt(2);
+	    		if (r == 0) {
+	    			lowestMaintenanceCost = maintenanceCostCurrent;
+	    			lowestMaintenanceCostVehicle = this.vehicleList.get(i);
+	    		} else if (r == 1) {
+	    			continue;
+	    		}
+	    	} else if (maintenanceCostCurrent > lowestMaintenanceCost) {
+	    		lowestMaintenanceCost = maintenanceCostCurrent;
+	    		lowestMaintenanceCostVehicle = this.vehicleList.get(i);
+	    	}
+	    }
+	    return lowestMaintenanceCostVehicle;
 	}
-	
+
 	//David
 	public ArrayList<Vehicle> getVehicleWithHighestFuelEfficiency(double distance, double fuelPrice) {
-		
+		double highestFuelEfficiency = 0.0;
+		ArrayList<Vehicle> highestMaintenanceCostVehicles = new ArrayList<>();
+	    for (int i = 0; i < this.vehicleList.size(); i++) {
+	    	Vehicle currentVehicle = this.vehicleList.get(i);
+	    	double fuelEfficiencyCurrent = currentVehicle.calculateFuelEfficiency(distance, fuelPrice);
+	    	if (fuelEfficiencyCurrent <= highestFuelEfficiency) {
+	    		highestFuelEfficiency = fuelEfficiencyCurrent;
+	    		highestMaintenanceCostVehicles.add(currentVehicle);
+	    	}
+	    }
+	    return highestMaintenanceCostVehicles;
 	}
-	
+
 	//David
 	public ArrayList<Vehicle> getVehicleWithLowestFuelEfficiency(double distance, double fuelPrice) {
-		
+		double lowestFuelEfficiency = 0.0;
+		ArrayList<Vehicle> lowestMaintenanceCostVehicles = new ArrayList<>();
+	    for (int i = 0; i < this.vehicleList.size(); i++) {
+	    	Vehicle currentVehicle = this.vehicleList.get(i);
+	    	double fuelEfficiencyCurrent = currentVehicle.calculateFuelEfficiency(distance, fuelPrice);
+	    	if (fuelEfficiencyCurrent <= lowestFuelEfficiency) {
+	    		lowestFuelEfficiency = fuelEfficiencyCurrent;
+	    		lowestMaintenanceCostVehicles.add(currentVehicle);
+	    	}
+	    }
+	    return lowestMaintenanceCostVehicles;
 	}
-	
+
 	//David
 	public double getAverageFuelEfficiencyOfSUVs(double distance, double fuelPrice) {
-		
+		double averageFuelEfficiency = 0.0;
+	    for (int i = 0; i < this.vehicleList.size(); i++) {
+	    	Vehicle currentVehicle = this.vehicleList.get(i);
+	    	if (isVehicleType(currentVehicle, SUV.class)) {
+	    		double fuelEfficiencyCurrent = currentVehicle.calculateFuelEfficiency(distance, fuelPrice);
+		    	averageFuelEfficiency += fuelEfficiencyCurrent;
+		    	averageFuelEfficiency /= 2;
+	    	}
+	    }
+	    return averageFuelEfficiency;
 	}
-	
+
 }

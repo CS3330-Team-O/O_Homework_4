@@ -2,9 +2,9 @@ package edu.mu;
 
 public class Truck extends Vehicle{
 	public Truck() {
-		
+
 	}
-	
+
 	public Truck(String brand, String make, long modelYear, double price, VehicleColor color, FuelType fuelType, double mileage, double mass, int cylinders, double gasTankCapacity, StartMechanism startType) {
 		super.brand = brand;
 		super.make = make;
@@ -18,7 +18,7 @@ public class Truck extends Vehicle{
 		super.gasTankCapacity = gasTankCapacity;
 		super.startType = startType;
 	}
-	
+
 	public void copy(Truck truck1) {
 		this.brand = truck1.brand;
 		this.make = truck1.make;
@@ -32,7 +32,7 @@ public class Truck extends Vehicle{
 		this.gasTankCapacity = truck1.gasTankCapacity;
 		this.startType = truck1.startType;
 	}
-	
+
 	@Override
 	public double calculateMaintenanceCost(double distance) {
 		double maintenanceCost;
@@ -55,7 +55,7 @@ public class Truck extends Vehicle{
 	@Override
 	public void startEngine() {
 		System.out.println(this.startType);
-		
+
 	}
 
 }
