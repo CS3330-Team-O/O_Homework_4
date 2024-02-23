@@ -12,7 +12,7 @@ import java.util.Random;
 public class VehicleManager {
 	String vehicleFilePath = "./vehicleList.csv";
 	public ArrayList <Vehicle> vehicleList = new ArrayList<>();
-	private final static double distance = 300;
+	private final static double distance = 300.0;
 	private final static double fuelPrice = 3.25;
 
 	//Ash
@@ -40,15 +40,19 @@ public class VehicleManager {
 				case "Car":
 					Vehicle car = new Car(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					this.vehicleList.add(car);
+					break;
 				case "Truck":
 					Vehicle truck = new Truck(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					this.vehicleList.add(truck);
+					break;
 				case "SUV":
 					Vehicle suv = new SUV(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					this.vehicleList.add(suv);
+					break;
 				case "MotorBike":
 					Vehicle motorBike = new MotorBike(model, make, modelYear, price, color, fuelType, mileage, mass, cylinders, gasTank, startType);
 					this.vehicleList.add(motorBike);
+					break;
 			}
 			}
 			br.close();
@@ -75,8 +79,7 @@ public class VehicleManager {
 		for(int i = 0; i < vehicleList.size(); i++){
 				if(vehicleList.get(i) instanceof Car) {
 					cars=true;
-					System.out.println(vehicleList.get(i).toString());
-					System.out.println("Maintenance Cost: " + vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+					System.out.println(vehicleList.get(i).toString() + ",Maintenance Cost: " + vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 				}
 			}
 		if(!cars) {
@@ -90,7 +93,7 @@ public class VehicleManager {
 		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof Truck) {
 				trucks=true;
-				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 			}
 		}
 		if(!trucks) {
@@ -104,7 +107,7 @@ public class VehicleManager {
 		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof SUV) {
 				suv=true;
-				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 			}
 		}
 		if(!suv) {
@@ -118,7 +121,7 @@ public class VehicleManager {
 		for(int i = 0; i < vehicleList.size(); i++){
 			if(vehicleList.get(i) instanceof MotorBike) {
 				motorbike=true;
-				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 			}
 		}
 		if(!motorbike) {
@@ -132,7 +135,7 @@ public class VehicleManager {
 		for(int i = 0; i < vehicleList.size(); i++){
 			if(v.equals(vehicleList.get(i))) {
 				vehicle=true;
-				System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 			}
 		}
 		if(!vehicle) {
@@ -146,7 +149,7 @@ public class VehicleManager {
 			System.out.println("There are no vehicles in this list!");
 		}
 		for(int i =0; i < vehicleList.size(); i++){
-			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice));
 		}
 	}
 
@@ -180,12 +183,12 @@ public class VehicleManager {
 		try {
 			fw = new FileWriter(vehicleFilePath, false);
 			BufferedWriter bwr = new BufferedWriter(fw);
+			bwr.write("Type,Model,Make,ModelYear,Price,Color,FuelType,Mileage,Mass,Cylinders,GasTankCapacity,StartType\n");
 			for (int i = 0; i < this.vehicleList.size(); i++) {
 				bwr.write(this.vehicleList.get(i).getType() + "," + this.vehicleList.get(i).getBrand() + "," + this.vehicleList.get(i).getMake() + "," + 
 						this.vehicleList.get(i).getModelYear() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getColor() + "," + 
 						this.vehicleList.get(i).getFuelType() + "," + this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getMass() + "," + 
-						this.vehicleList.get(i).getCylinders() + "," + this.vehicleList.get(i).getGasTankCapacity() + "," + 
-						this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getStartType() + "\n");
+						this.vehicleList.get(i).getCylinders() + "," + this.vehicleList.get(i).getGasTankCapacity() + "," + this.vehicleList.get(i).getStartType() + "\n");
 			}
 			bwr.close();
 		} catch (IOException e) {

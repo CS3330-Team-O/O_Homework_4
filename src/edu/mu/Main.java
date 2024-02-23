@@ -39,15 +39,20 @@ public class Main {
 		vehicleManager.displayAllVehicleInformation();
 		
 		Vehicle highestMaintenanceCostVehicle = vehicleManager.getVehicleWithHighestMaintenanceCost(100);
-		System.out.println("\nhighestMaintenanceCostVehicle: " + highestMaintenanceCostVehicle);
+		System.out.println("\n-------------Highest Maintenance Cost Vehicle-------------");
+		System.out.println(highestMaintenanceCostVehicle);
 		Vehicle lowestMaintenanceCostVehicle =vehicleManager.getVehicleWithLowestMaintenanceCost(100);
-		System.out.println("lowestMaintenanceCostVehicle: " + lowestMaintenanceCostVehicle);
+		System.out.println("\n-------------Lowest Maintenance Cost Vehicle-------------");
+		System.out.println(lowestMaintenanceCostVehicle);
 		ArrayList<Vehicle> highestFuelEfficiencyVehicles = vehicleManager.getVehicleWithHighestFuelEfficiency(100, 100);
-		System.out.println("highestFuelEfficiencyVehicle: " + highestFuelEfficiencyVehicles);
+		System.out.println("\n-------------Highest Fuel Efficiency Vehicle-------------");
+		System.out.println(highestFuelEfficiencyVehicles);
 		ArrayList<Vehicle> lowestFuelEfficiencyVehicles = vehicleManager.getVehicleWithLowestFuelEfficiency(100, 100);
-		System.out.println("lowestFuelEfficiencyVehicle: " + lowestFuelEfficiencyVehicles);
+		System.out.println("\n-------------Lowest Fuel Efficiency Vehicle-------------");
+		System.out.println(lowestFuelEfficiencyVehicles);
 		double averageFuelEfficiencyOfSUVs = vehicleManager.getAverageFuelEfficiencyOfSUVs(100, 100);
-		System.out.println("averageFuelEfficiencyOfSUVs: " + averageFuelEfficiencyOfSUVs);
+		System.out.println("\n-------------Average Fuel Efficiency Of SUVs-------------");
+		System.out.println(averageFuelEfficiencyOfSUVs);
 
 	}
 
