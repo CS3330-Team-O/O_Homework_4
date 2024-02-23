@@ -1,6 +1,7 @@
 package edu.mu;
 
 public abstract class Vehicle {
+	protected String type;
 	protected String brand;
 	protected String make;
 	protected long modelYear;
@@ -13,7 +14,13 @@ public abstract class Vehicle {
 	protected double gasTankCapacity;
 	protected StartMechanism startType;
 	
-	
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getBrand() {
 		return brand;
 	}

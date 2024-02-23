@@ -12,6 +12,8 @@ import java.util.Random;
 public class VehicleManager {
 	String vehicleFilePath = "vehicleList.csv";
 	ArrayList <Vehicle> vehicleList = new ArrayList<>();
+	private final static double distance = 300;
+	private final static double fuelPrice = 3.25;
 
 	//Ash
 	public boolean readFromFile(String fileName) {
@@ -63,32 +65,83 @@ public class VehicleManager {
 
 	//Syd
 	public void displayAllCarInformation() {
-
+		boolean cars = false;
+			for(int i =0; i<= vehicleList.size(); i++){
+				if(vehicleList.get(i) instanceof Car) {
+					cars=true;
+					System.out.println(vehicleList.get(i).toString());
+					System.out.println("Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+				}
+			}
+		if(!cars) {
+			System.out.println("There are no cars in this list!");
+		}
 	}
 
 	//Syd
 	public void displayAllTruckInformation() {
-
+		boolean trucks = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof Truck) {
+				trucks=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!trucks) {
+			System.out.println("There are no trucks in this list!");
+		}
 	}
 
 	//Syd
 	public void displayAllSUVInformation() {
-
+		boolean suv = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof SUV) {
+				suv=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!suv) {
+			System.out.println("There are no SUVs in this list!");
+		}
 	}
 
 	//Syd
 	public void displayAllMotorBikeInformation() {
-
+		boolean motorbike = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(vehicleList.get(i) instanceof MotorBike) {
+				motorbike=true;
+				System.out.println(vehicleList.get(i).toString()+",Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!motorbike) {
+			System.out.println("There are no motor bikes in this list!");
+		}
 	}
 
 	//Syd
 	public void displayVehicleInformation(Vehicle v) {
-
+		boolean vehicle = false;
+		for(int i =0; i<= vehicleList.size(); i++){
+			if(v.equals(vehicleList.get(i))) {
+				vehicle=true;
+				System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+			}
+		}
+		if(!vehicle) {
+			System.out.println("Vehicle was not found in this list!");
+		}
 	}
 
 	//Syd
 	public void displayAllVehicleInformation() {
-
+		if(vehicleList.isEmpty()){
+			System.out.println("There are no vehicles in this list!");
+		}
+		for(int i =0; i<= vehicleList.size(); i++){
+			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
+		}
 	}
 
 	//Ash
@@ -122,14 +175,17 @@ public class VehicleManager {
 			fw = new FileWriter(vehicleFilePath, false);
 			BufferedWriter bwr = new BufferedWriter(fw);
 			for (int i = 0; i < this.vehicleList.size(); i++) {
-				bwr.write(this.vehicleList.get(i).getType() + "," + this.vehicleList.get(i).getTitle() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getYear() + "," + this.vehicleList.get(i).getGenre() + "\n");
+				bwr.write(this.vehicleList.get(i).getClass() + "," + this.vehicleList.get(i).getBrand() + "," + this.vehicleList.get(i).getMake() + "," + 
+						this.vehicleList.get(i).getModelYear() + "," + this.vehicleList.get(i).getPrice() + "," + this.vehicleList.get(i).getColor() + "," + 
+						this.vehicleList.get(i).getFuelType() + "," + this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getMass() + "," + 
+						this.vehicleList.get(i).getCylinders() + "," + this.vehicleList.get(i).getGasTankCapacity() + "," + 
+						this.vehicleList.get(i).getMileage() + "," + this.vehicleList.get(i).getStartType() + "\n");
 			}
 			bwr.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-
-
+			return false;
+		} 
 		return true;
 	}
 
@@ -141,10 +197,9 @@ public class VehicleManager {
 
 	//Isaiah
 	public int getNumberOfVehichlesByType(@SuppressWarnings("rawtypes") Class clazz) {
-
 		int count = 0;
 		for(int i = 0; i < vehicleList.size(); ++i) {
-			if(vehicleList.get(i).getClass() == clazz) {
+			if(isVehicleType(vehicleList.get(i), clazz.getClass())) {
 					count++;
 			}
 		}
