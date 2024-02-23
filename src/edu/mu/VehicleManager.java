@@ -145,7 +145,7 @@ public class VehicleManager {
 		if(vehicleList.isEmpty()){
 			System.out.println("There are no vehicles in this list!");
 		}
-		for(int i =0; i<= vehicleList.size(); i++){
+		for(int i =0; i < vehicleList.size(); i++){
 			System.out.println(vehicleList.get(i).toString()+", Maintenance Cost: " +vehicleList.get(i).calculateMaintenanceCost(distance) + ", Fuel Efficiency:" + vehicleList.get(i).calculateFuelEfficiency(distance, fuelPrice) + ", Start Engine:" + vehicleList.get(i).getStartType());
 		}
 	}
