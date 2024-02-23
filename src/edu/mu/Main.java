@@ -8,31 +8,38 @@ public class Main {
 
 		VehicleManager vehicleManager = new VehicleManager();
 		boolean readFile = vehicleManager.readFromFile("vehicleList.csv");
-		System.out.println("-------------Original Car Info-------------\n");
-		vehicleManager.displayAllCarInformation();
+		System.out.println("\n-------------Original Car Info-------------");
+		vehicleManager.displayAllVehicleInformation();
     
 		Car carTest = new Car("Test", "Test", 2024, 100000, VehicleColor.BLUE, FuelType.DIESEL, 50000, 3.0, 4, 20, StartMechanism.KEYSTART);
 		boolean add = vehicleManager.addVehicle(carTest);
 
-		System.out.println("-------------Car Info with Test-------------\n");
-		vehicleManager.displayAllCarInformation();
+		System.out.println("\n-------------Car Info with Test-------------");
+		vehicleManager.displayAllVehicleInformation();
 		
 		boolean remove = vehicleManager.removeVehicle(carTest);
-		System.out.println("-------------Car Info without Test-------------\n");
-		vehicleManager.displayAllCarInformation();
+		System.out.println("\n-------------Car Info without Test-------------");
+		vehicleManager.displayAllVehicleInformation();
 		
 		boolean save = vehicleManager.saveVehicleList();
-		System.out.println("-------------Reading info in after save to CSV-------------\n");
+		System.out.println("\n-------------Reading info in after save to CSV-------------");
 		vehicleManager.readFromFile("vehicleList.csv");
-		vehicleManager.displayAllCarInformation();
+		vehicleManager.displayAllVehicleInformation();
 
+		System.out.println("\n-------------All Truck info-------------");
 		vehicleManager.displayAllTruckInformation();
+		
+		System.out.println("\n-------------All SUV info-------------");
 		vehicleManager.displayAllSUVInformation();
+		
+		System.out.println("\n-------------All MotorBike info-------------");
 		vehicleManager.displayAllMotorBikeInformation();
+		
+		System.out.println("\n-------------All vehicle info-------------");
 		vehicleManager.displayAllVehicleInformation();
 		
 		Vehicle highestMaintenanceCostVehicle = vehicleManager.getVehicleWithHighestMaintenanceCost(100);
-		System.out.println("highestMaintenanceCostVehicle: " + highestMaintenanceCostVehicle);
+		System.out.println("\nhighestMaintenanceCostVehicle: " + highestMaintenanceCostVehicle);
 		Vehicle lowestMaintenanceCostVehicle =vehicleManager.getVehicleWithLowestMaintenanceCost(100);
 		System.out.println("lowestMaintenanceCostVehicle: " + lowestMaintenanceCostVehicle);
 		ArrayList<Vehicle> highestFuelEfficiencyVehicles = vehicleManager.getVehicleWithHighestFuelEfficiency(100, 100);
