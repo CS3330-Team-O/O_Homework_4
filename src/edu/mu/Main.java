@@ -5,23 +5,51 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		VehicleManager vehicleManager = new VehicleManager("vehicleList.csv");
+		VehicleManager vehicleManager = new VehicleManager();
+		boolean readFile = vehicleManager.readFromFile("vehicleList.csv");
+		System.out.println("-------------Original Car Info-------------\n");
+		vehicleManager.displayAllCarInformation();
+    
 		Car carTest = new Car("Test", "Test", 2024, 100000, VehicleColor.BLUE, FuelType.DIESEL, 50000, 3.0, 4, 20, StartMechanism.KEYSTART);
 		boolean add = vehicleManager.addVehicle(carTest);
-		boolean remove = vehicleManager.removeVehicle(carTest);
+
+		System.out.println("-------------Car Info with Test-------------\n");
 		vehicleManager.displayAllCarInformation();
-		Vehicle highestMaintenanceCostVehicle = vehicleManager.getVehicleWithHighestMaintenanceCost(100);
-		System.out.println("highestMaintenanceCostVehicle: " + highestMaintenanceCostVehicle);
-		Vehicle lowestMaintenanceCostVehicle =vehicleManager.getVehicleWithLowestMaintenanceCost(100);
-		System.out.println("lowestMaintenanceCostVehicle: " + lowestMaintenanceCostVehicle);
-		ArrayList<Vehicle> highestFuelEfficiencyVehicles = vehicleManager.getVehicleWithHighestFuelEfficiency(100, 100);
-		System.out.println("highestFuelEfficiencyVehicle: " + highestFuelEfficiencyVehicles);
-		ArrayList<Vehicle> lowestFuelEfficiencyVehicles = vehicleManager.getVehicleWithLowestFuelEfficiency(100, 100);
-		System.out.println("lowestFuelEfficiencyVehicle: " + lowestFuelEfficiencyVehicles);
-		double averageFuelEfficiencyOfSUVs = vehicleManager.getAverageFuelEfficiencyOfSUVs(100, 100);
-		System.out.println("averageFuelEfficiencyOfSUVs: " + averageFuelEfficiencyOfSUVs);
+		
+		boolean remove = vehicleManager.removeVehicle(carTest);
+
+		System.out.println("-------------Car Info without Test-------------\n");
+		vehicleManager.displayAllCarInformation();
+		
+    System.out.println("-------------Car Info with Test-------------\n");
+		vehicleManager.displayAllCarInformation();
+		
+		boolean remove = vehicleManager.removeVehicle(carTest);
+		System.out.println("-------------Car Info without Test-------------\n");
+		vehicleManager.displayAllCarInformation();
 		
 		boolean save = vehicleManager.saveVehicleList();
+		System.out.println("-------------Reading info in after save to CSV-------------\n");
+		vehicleManager.VehicleManager("vehicleList.csv");
+		vehicleManager.displayAllCarInformation();
+
+		boolean save = vehicleManager.saveVehicleList();
+		System.out.println("-------------Reading info in after save to CSV-------------\n");
+		vehicleManager.VehicleManager("vehicleList.csv");
+		vehicleManager.displayAllCarInformation();
+
+
+		vehicleManager.displayAllTruckInformation();
+		vehicleManager.displayAllSUVInformation();
+		vehicleManager.displayAllMotorBikeInformation();
+		vehicleManager.displayAllVehicleInformation();
+		
+		vehicleManager.getVehicleWithHighestMaintenanceCost(100);
+		vehicleManager.getVehicleWithLowestMaintenanceCost(100);
+		vehicleManager.getVehicleWithHighestFuelEfficiency(100, 3);
+		vehicleManager.getVehicleWithLowestFuelEfficiency(100, 3);
+		vehicleManager.getAverageFuelEfficiencyOfSUVs(100, 3);
+
 	}
 
 }
