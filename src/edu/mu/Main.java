@@ -12,7 +12,13 @@ public class Main {
 		boolean save = vehicleManager.saveVehicleList();
 		
 		vehicleManager.displayAllCarInformation();
-    vehicleManager.getVehicleWithHighestMaintenanceCost(0);
+		vehicleManager.displayAllTruckInformation();
+		vehicleManager.displayAllSUVInformation();
+		vehicleManager.displayAllMotorBikeInformation();
+		vehicleManager.displayAllVehicleInformation();
+		vehicleManager.displayVehicleInformation(carTest);
+		
+		vehicleManager.getVehicleWithHighestMaintenanceCost(0);
 		vehicleManager.getVehicleWithLowestMaintenanceCost(0);
 		vehicleManager.getVehicleWithHighestFuelEfficiency(0, 0);
 		vehicleManager.getVehicleWithLowestFuelEfficiency(0, 0);
