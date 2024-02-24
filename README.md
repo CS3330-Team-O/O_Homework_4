@@ -2,29 +2,29 @@
 
 <b><h2>Abstract Class: Vehicle (ISAIAH)</h2></b>
 <h3>Properties:</h3>
-protected String type;
+protected String type
 <br />
-protected String brand;
+protected String brand
 <br />
-protected String make;
+protected String make
 <br />
-protected long modelYear;
+protected long modelYear
 <br />
-protected double price;
+protected double price
 <br />
-protected VehicleColor color;
+protected VehicleColor color
 <br />
-protected FuelType fuelType;
+protected FuelType fuelType
 <br />
-protected double mileage;
+protected double mileage
 <br />
-protected double mass;
+protected double mass
 <br />
-protected int cylinders;
+protected int cylinders
 <br />
-protected double gasTankCapacity;
+protected double gasTankCapacity
 <br />
-protected StartMechanism startType;
+protected StartMechanism startType
 <br />
 
 <h3>Abstract Methods:</h3>
@@ -95,7 +95,7 @@ private final static double fuelPrice = 3.25
 <br />
 
 <h3>Methods:</h3>
-<h4>ASHLEY:</h4>
+<h4>ASHLEY</h4>
 public VehicleManager(String fileName)
 <br />
 public VehicleManager()
